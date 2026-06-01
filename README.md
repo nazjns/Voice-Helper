@@ -1,4 +1,4 @@
-# PROJECT AI
+# PROJECT VOICE HELPER
 
 ## Thành viên
 - Nguyễn Trọng Vũ Hoàng
