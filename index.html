@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIoT Smart Note</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/splash.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/robot.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div id="splash-screen">
+        <div class="splash-orb orb-1"></div>
+        <div class="splash-orb orb-2"></div>
+        <div class="splash-orb orb-3"></div>
+        <div class="splash-content">
+            <h1 class="splash-title">AIoT <span class="gradient-text">Smart Note</span></h1>
+            <p class="splash-subtitle">Hệ thống Trợ lý Ảo Nhận diện Giọng nói Thông minh</p>
+            <button id="btn-start-app" class="btn-glow">BẮT ĐẦU TRẢI NGHIỆM <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+    </div>
+
+    <div id="main-app" style="display: none;">
+        <canvas id="star-canvas" class="star-bg"></canvas>
+
+        <div class="dashboard-wrapper">
+            <aside class="glass-panel sidebar-left">
+                <div class="calendar-header">
+                    <h3><i class="fa-regular fa-calendar-check"></i> LỊCH GHI CHÚ</h3>
+                    <input type="date" id="study-date" class="date-picker-large">
+                </div>
+                <div class="notes-manager">
+                    <h4>Danh sách bản ghi:</h4>
+                    <ul id="notes-list" class="notes-list"></ul>
+                </div>
+            </aside>
+
+            <main class="app-container main-panel">
+                <header>
+                    <h1>AIoT Smart Note</h1>
+                    <p id="status-text" class="status-idle">Sẵn sàng / Đã lưu</p>
+                </header>
+
+                <div class="mic-section">
+                    <div class="mic-wrapper">
+                        <div class="ring" style="animation-delay: 0s;"></div>
+                        <div class="ring" style="animation-delay: 0.6s;"></div>
+                        <div class="ring" style="animation-delay: 1.2s;"></div>
+                        <button id="mic-btn" class="btn-idle" title="Bắt đầu / Kết thúc ghi âm">
+                            <i class="fa-solid fa-microphone" id="mic-icon"></i>
+                        </button>
+                    </div>
+                    <button id="pause-btn" class="btn-pause" disabled title="Tạm dừng / Tiếp tục">
+                        <i class="fa-solid fa-pause" id="pause-icon"></i> Tạm dừng
+                    </button>
+                </div>
+
+                <div class="mode-selector">
+                    <label><input type="checkbox" id="meeting-mode-toggle" checked> Chế độ Hội thoại (Meeting)</label>
+                </div>
+
+                <div class="transcript-box">
+                    <div class="chat-container" id="user-transcript">
+                        <div class="chat-message speaker-system">
+                            <em>Giọng nói sẽ hiển thị realtime ở đây...</em>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-buttons" id="action-buttons">
+                    <button id="btn-summarize" class="btn-primary"><i class="fa-solid fa-wand-magic-sparkles"></i> Tóm tắt</button>
+                    <button id="btn-save-note" class="btn-success"><i class="fa-solid fa-floppy-disk"></i> Lưu bản ghi</button>
+                    <button id="btn-export" class="btn-secondary"><i class="fa-solid fa-download"></i> .md</button>
+                    <button id="btn-copy" class="btn-secondary"><i class="fa-solid fa-copy"></i> Copy</button>
+                    <button id="btn-clear" class="btn-danger"><i class="fa-solid fa-trash-can"></i> Xóa mới</button>
+                </div>
+
+                <div class="analysis-result" id="analysis-result" style="display: none;">
+                    <div class="result-section"><h3><i class="fa-solid fa-align-left"></i> Tóm tắt</h3><p id="res-summary"></p></div>
+                    <div class="result-section"><h3><i class="fa-solid fa-list-check"></i> Key Points</h3><ul id="res-keypoints"></ul></div>
+                    <div class="result-section"><h3><i class="fa-solid fa-clone"></i> Flashcards</h3><div id="res-flashcards" class="flashcards-container"></div></div>
+                </div>
+            </main>
+
+            <aside class="glass-panel sidebar-right">
+                <h3>AI STATUS</h3>
+                <div class="equalizer" id="equalizer">
+                    <span style="--delay: 0.1s; height: 60%;"></span>
+                    <span style="--delay: 0.3s; height: 100%;"></span>
+                    <span style="--delay: 0.2s; height: 40%;"></span>
+                    <span style="--delay: 0.5s; height: 80%;"></span>
+                    <span style="--delay: 0.4s; height: 50%;"></span>
+                    <span style="--delay: 0.1s; height: 90%;"></span>
+                </div>
+                <p class="ai-model-text">Gemini 1.5 Pro Enabled</p>
+                
+                <div class="robot-status">
+                    <div id="ai-mascot" class="custom-robot" title="Nhấn vào để chào!">
+                        <div class="robot-head">
+                            <div class="robot-eyes">
+                                <div class="eye"></div>
+                                <div class="eye"></div>
+                            </div>
+                        </div>
+                        <div class="robot-body">
+                            <div class="robot-arm left-arm"></div>
+                            <div class="robot-core">A</div>
+                            <div class="robot-arm right-arm" id="waving-arm"></div>
+                        </div>
+                    </div>
+                    <p id="ai-processing-text"><i class="fa-solid fa-circle-check"></i> Standby</p>
+                </div>
+            </aside>
+        </div> 
+    </div> 
+
+    <div id="custom-context-menu" class="context-menu" style="display: none;">
+        <button id="btn-delete-note"><i class="fa-solid fa-trash-can"></i> Xóa bản ghi này</button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    
+    <script src="js/state.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/speech.js"></script>
+    <script src="js/events.js"></script>
+    <script src="js/effects.js"></script>
+</body>
+</html>
