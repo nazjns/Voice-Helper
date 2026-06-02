@@ -1,0 +1,47 @@
+.status-idle { color: var(--color-idle); } 
+.status-recording { color: var(--color-recording); animation: blink 1s infinite; } 
+.status-paused { color: var(--color-pause); }
+@keyframes blink { 50% { opacity: 0.5; } }
+
+.equalizer { display: flex; align-items: flex-end; gap: 4px; height: 60px; margin-bottom: 2rem; width: 100%; justify-content: center; }
+.equalizer span { width: 12px; border-radius: 2px; transition: 0.2s; background: linear-gradient(to top, #3b82f6, #10b981, #eab308, #ef4444); }
+.equalizer.active span { animation: bounceEq 1s ease-in-out infinite alternate; animation-delay: var(--delay); }
+@keyframes bounceEq { 0% { height: 20%; } 100% { height: 100%; } }
+
+.mic-section { display: flex; flex-direction: column; align-items: center; margin: 10px 0; }
+.mic-wrapper { position: relative; height: 160px; width: 100%; display: flex; justify-content: center; align-items: center; margin-bottom: 10px; }
+.ring { position: absolute; width: 70px; height: 70px; border-radius: 50%; border: 2px solid rgba(59, 130, 246, 0.6); animation: ripple 2s linear infinite; }
+@keyframes ripple { 0% { transform: scale(1); opacity: 0.8; } 100% { transform: scale(2.8); opacity: 0; } }
+
+#mic-btn { position: relative; z-index: 10; width: 70px; height: 70px; border: none; border-radius: 50%; font-size: 1.8rem; color: white; cursor: pointer; box-shadow: 0 10px 20px rgba(0,0,0,0.3); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+#mic-btn:hover { transform: scale(1.08); filter: brightness(1.1); }
+#mic-btn:active { transform: scale(0.85); }
+.btn-idle { background: var(--color-idle); }
+.btn-recording { background: var(--color-recording); box-shadow: 0 0 30px rgba(239, 68, 68, 0.6); }
+
+.action-buttons { display: flex; gap: 10px; justify-content: center; margin-bottom: 10px; }
+.action-buttons button, .btn-pause, .btn-glow { border: none; cursor: pointer; color: white; position: relative; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
+.action-buttons button { padding: 10px 15px; border-radius: 8px; font-weight: bold; }
+.btn-pause { padding: 8px 20px; border-radius: 20px; display: flex; gap: 8px; align-items: center; background: #334155; }
+.btn-pause:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.btn-primary { background: #3b82f6; }
+.btn-secondary { background: #334155; }
+.btn-danger { background: #ef4444; }
+.btn-success { background: #10b981; border: 1px solid #10b981; }
+
+.action-buttons button:hover, .btn-pause:hover:not(:disabled) { transform: translateY(-3px); filter: brightness(1.15); }
+.action-buttons button:active, .btn-pause:active:not(:disabled) { transform: translateY(1px) scale(0.93); box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); filter: brightness(0.9); }
+.btn-primary:hover { box-shadow: 0 8px 20px rgba(59, 130, 246, 0.5); }
+.btn-secondary:hover { box-shadow: 0 8px 20px rgba(51, 65, 85, 0.6); }
+.btn-danger:hover { box-shadow: 0 8px 20px rgba(239, 68, 68, 0.5); }
+.btn-success:hover { box-shadow: 0 8px 20px rgba(16, 185, 129, 0.5); background: #059669; }
+.btn-pause:hover:not(:disabled) { box-shadow: 0 8px 20px rgba(245, 158, 11, 0.5); background: var(--color-pause); }
+
+.btn-glow { background: rgba(59, 130, 246, 0.15); border: 2px solid #3b82f6; padding: 18px 45px; font-size: 1.15rem; font-weight: bold; border-radius: 50px; backdrop-filter: blur(10px); display: inline-flex; align-items: center; justify-content: center; gap: 10px; margin: 0 auto; box-shadow: 0 0 15px rgba(59, 130, 246, 0.4); z-index: 50; }
+.btn-glow:hover { background: rgba(59, 130, 246, 0.6); border-color: #60a5fa; box-shadow: 0 0 35px rgba(59, 130, 246, 0.8); transform: translateY(-5px); }
+.btn-glow:active { transform: translateY(2px) scale(0.95); }
+
+.context-menu { position: absolute; z-index: 9999; background: rgba(15, 23, 42, 0.95); border: 1px solid #475569; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); padding: 5px; overflow: hidden; backdrop-filter: blur(10px); }
+.context-menu button { background: transparent; border: none; color: #ef4444; padding: 10px 15px; width: 100%; text-align: left; cursor: pointer; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; transition: 0.2s; border-radius: 5px; font-weight: bold; }
+.context-menu button:hover { background: #ef4444; color: white; }

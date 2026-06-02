@@ -1,0 +1,16 @@
+.custom-robot { display: flex; flex-direction: column; align-items: center; margin: 10px auto 20px auto; cursor: pointer; animation: robotHover 3s ease-in-out infinite; }
+@keyframes robotHover { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+.robot-head { width: 85px; height: 60px; background: white; border-radius: 50px; position: relative; margin-bottom: 2px; display: flex; justify-content: center; align-items: center; box-shadow: 0 5px 15px rgba(0,0,0,0.2), inset 0 -4px 8px rgba(150,163,184,0.3); z-index: 2; }
+.robot-eyes { display: flex; gap: 18px; margin-top: 5px; }
+.eye { width: 16px; height: 16px; background: #3b82f6; border-radius: 50%; box-shadow: 0 0 12px #3b82f6; animation: blink 4s infinite; }
+@keyframes blink { 0%, 46%, 48%, 100% { transform: scaleY(1); } 47% { transform: scaleY(0.1); } }
+
+.robot-body { position: relative; display: flex; align-items: flex-start; justify-content: center; }
+.robot-core { width: 95px; height: 85px; background: white; border-radius: 45px; display: flex; justify-content: center; align-items: center; font-size: 2.4rem; font-weight: 900; color: #3b82f6; box-shadow: 0 5px 15px rgba(0,0,0,0.2), inset 0 -6px 10px rgba(150,163,184,0.3); z-index: 2; }
+.robot-arm { width: 22px; height: 40px; background: white; border-radius: 15px; position: absolute; top: 18px; transform-origin: top center; z-index: 1; box-shadow: 0 5px 10px rgba(0,0,0,0.2), inset 0 -3px 5px rgba(150,163,184,0.3); }
+.left-arm { left: -14px; transform: rotate(30deg); }
+.right-arm { right: -14px; transform: rotate(-30deg); }
+
+.right-arm.waving { animation: waveArm 0.6s ease-in-out 3; }
+@keyframes waveArm { 0%, 100% { transform: rotate(-30deg); } 50% { transform: rotate(-130deg); } }
